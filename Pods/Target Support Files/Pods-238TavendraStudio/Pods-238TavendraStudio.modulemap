@@ -1,0 +1,6 @@
+framework module Pods_238TavendraStudio {
+  umbrella header "Pods-238TavendraStudio-umbrella.h"
+
+  export *
+  module * { export * }
+}

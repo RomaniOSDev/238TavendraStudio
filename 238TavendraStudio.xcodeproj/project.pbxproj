@@ -3,33 +3,89 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 60;
 	objects = {
+
+/* Begin PBXBuildFile section */
+		30A36A6B2FF538BB00F171B4 /* AchievementBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A332FF538BB00F171B4 /* AchievementBannerView.swift */; };
+		30A36A6C2FF538BB00F171B4 /* AppBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A342FF538BB00F171B4 /* AppBackgroundView.swift */; };
+		30A36A6D2FF538BB00F171B4 /* AppDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A352FF538BB00F171B4 /* AppDesignSystem.swift */; };
+		30A36A6E2FF538BB00F171B4 /* AppVisualStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A362FF538BB00F171B4 /* AppVisualStyle.swift */; };
+		30A36A6F2FF538BB00F171B4 /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A372FF538BB00F171B4 /* CustomCells.swift */; };
+		30A36A702FF538BB00F171B4 /* EnergyLevelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A382FF538BB00F171B4 /* EnergyLevelPicker.swift */; };
+		30A36A712FF538BB00F171B4 /* DayPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A3A2FF538BB00F171B4 /* DayPlanView.swift */; };
+		30A36A722FF538BB00F171B4 /* EveningReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A3B2FF538BB00F171B4 /* EveningReviewView.swift */; };
+		30A36A732FF538BB00F171B4 /* FocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A3D2FF538BB00F171B4 /* FocusView.swift */; };
+		30A36A742FF538BB00F171B4 /* HabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A3F2FF538BB00F171B4 /* HabitsView.swift */; };
+		30A36A752FF538BB00F171B4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A412FF538BB00F171B4 /* HomeView.swift */; };
+		30A36A762FF538BB00F171B4 /* HomeWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A422FF538BB00F171B4 /* HomeWidgets.swift */; };
+		30A36A772FF538BB00F171B4 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A442FF538BB00F171B4 /* OnboardingView.swift */; };
+		30A36A782FF538BB00F171B4 /* ProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A462FF538BB00F171B4 /* ProjectsView.swift */; };
+		30A36A792FF538BB00F171B4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A482FF538BB00F171B4 /* SettingsView.swift */; };
+		30A36A7A2FF538BB00F171B4 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A4A2FF538BB00F171B4 /* StatsView.swift */; };
+		30A36A7B2FF538BB00F171B4 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A4C2FF538BB00F171B4 /* TasksView.swift */; };
+		30A36A7C2FF538BB00F171B4 /* WeeklyReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A4E2FF538BB00F171B4 /* WeeklyReviewView.swift */; };
+		30A36A7D2FF538BB00F171B4 /* WellnessHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A502FF538BB00F171B4 /* WellnessHubView.swift */; };
+		30A36A7E2FF538BB00F171B4 /* AppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A532FF538BB00F171B4 /* AppModels.swift */; };
+		30A36A7F2FF538BB00F171B4 /* PlanningModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A542FF538BB00F171B4 /* PlanningModels.swift */; };
+		30A36A802FF538BB00F171B4 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A562FF538BB00F171B4 /* MainTabView.swift */; };
+		30A36A812FF538BB00F171B4 /* AppDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A582FF538BB00F171B4 /* AppDataStore.swift */; };
+		30A36A822FF538BB00F171B4 /* AppDataStore+Planning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A592FF538BB00F171B4 /* AppDataStore+Planning.swift */; };
+		30A36A832FF538BB00F171B4 /* AppLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A5B2FF538BB00F171B4 /* AppLinks.swift */; };
+		30A36A842FF538BB00F171B4 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A5C2FF538BB00F171B4 /* FeedbackManager.swift */; };
+		30A36A852FF538BB00F171B4 /* ShakeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A5D2FF538BB00F171B4 /* ShakeEffect.swift */; };
+		30A36A862FF538BB00F171B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A5F2FF538BB00F171B4 /* AppDelegate.swift */; };
+		30A36A872FF538BB00F171B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A612FF538BB00F171B4 /* ContentView.swift */; };
+		30A36A882FF538BB00F171B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A682FF538BB00F171B4 /* SceneDelegate.swift */; };
+		30A36A892FF538BB00F171B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A692FF538BB00F171B4 /* ViewController.swift */; };
+		30A36A8A2FF538BB00F171B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30A36A602FF538BB00F171B4 /* Assets.xcassets */; };
+		30A36A8C2FF538BB00F171B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30A36A642FF538BB00F171B4 /* LaunchScreen.storyboard */; };
+		30A36A8D2FF538BB00F171B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30A36A662FF538BB00F171B4 /* Main.storyboard */; };
+		30A36A8E2FF538BB00F171B4 /* privacy_policy.md in Resources */ = {isa = PBXBuildFile; fileRef = 30A36A672FF538BB00F171B4 /* privacy_policy.md */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		30A366FA2FF4F8EC00F171B4 /* 238TavendraStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 238TavendraStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30A36A332FF538BB00F171B4 /* AchievementBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementBannerView.swift; sourceTree = "<group>"; };
+		30A36A342FF538BB00F171B4 /* AppBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackgroundView.swift; sourceTree = "<group>"; };
+		30A36A352FF538BB00F171B4 /* AppDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDesignSystem.swift; sourceTree = "<group>"; };
+		30A36A362FF538BB00F171B4 /* AppVisualStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVisualStyle.swift; sourceTree = "<group>"; };
+		30A36A372FF538BB00F171B4 /* CustomCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
+		30A36A382FF538BB00F171B4 /* EnergyLevelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyLevelPicker.swift; sourceTree = "<group>"; };
+		30A36A3A2FF538BB00F171B4 /* DayPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPlanView.swift; sourceTree = "<group>"; };
+		30A36A3B2FF538BB00F171B4 /* EveningReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveningReviewView.swift; sourceTree = "<group>"; };
+		30A36A3D2FF538BB00F171B4 /* FocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusView.swift; sourceTree = "<group>"; };
+		30A36A3F2FF538BB00F171B4 /* HabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsView.swift; sourceTree = "<group>"; };
+		30A36A412FF538BB00F171B4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		30A36A422FF538BB00F171B4 /* HomeWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWidgets.swift; sourceTree = "<group>"; };
+		30A36A442FF538BB00F171B4 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		30A36A462FF538BB00F171B4 /* ProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
+		30A36A482FF538BB00F171B4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		30A36A4A2FF538BB00F171B4 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		30A36A4C2FF538BB00F171B4 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
+		30A36A4E2FF538BB00F171B4 /* WeeklyReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReviewView.swift; sourceTree = "<group>"; };
+		30A36A502FF538BB00F171B4 /* WellnessHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellnessHubView.swift; sourceTree = "<group>"; };
+		30A36A532FF538BB00F171B4 /* AppModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModels.swift; sourceTree = "<group>"; };
+		30A36A542FF538BB00F171B4 /* PlanningModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningModels.swift; sourceTree = "<group>"; };
+		30A36A562FF538BB00F171B4 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		30A36A582FF538BB00F171B4 /* AppDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataStore.swift; sourceTree = "<group>"; };
+		30A36A592FF538BB00F171B4 /* AppDataStore+Planning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDataStore+Planning.swift"; sourceTree = "<group>"; };
+		30A36A5B2FF538BB00F171B4 /* AppLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinks.swift; sourceTree = "<group>"; };
+		30A36A5C2FF538BB00F171B4 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
+		30A36A5D2FF538BB00F171B4 /* ShakeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeEffect.swift; sourceTree = "<group>"; };
+		30A36A5F2FF538BB00F171B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		30A36A602FF538BB00F171B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30A36A612FF538BB00F171B4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		30A36A622FF538BB00F171B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30A36A632FF538BB00F171B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		30A36A652FF538BB00F171B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		30A36A672FF538BB00F171B4 /* privacy_policy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = privacy_policy.md; sourceTree = "<group>"; };
+		30A36A682FF538BB00F171B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		30A36A692FF538BB00F171B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3FBD5030D36CE6F44D906CB1 /* Pods_238TavendraStudio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_238TavendraStudio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B3EE5225A6FA1D3C0D3B9A7 /* Pods-238TavendraStudio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-238TavendraStudio.release.xcconfig"; path = "Target Support Files/Pods-238TavendraStudio/Pods-238TavendraStudio.release.xcconfig"; sourceTree = "<group>"; };
+		6EF2A3284B6FF3AF37EF7D30 /* Pods-238TavendraStudio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-238TavendraStudio.debug.xcconfig"; path = "Target Support Files/Pods-238TavendraStudio/Pods-238TavendraStudio.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		30A3670C2FF4F8ED00F171B4 /* Exceptions for "238TavendraStudio" folder in "238TavendraStudio" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 30A366F92FF4F8EC00F171B4 /* 238TavendraStudio */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		30A366FC2FF4F8EC00F171B4 /* 238TavendraStudio */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				30A3670C2FF4F8ED00F171B4 /* Exceptions for "238TavendraStudio" folder in "238TavendraStudio" target */,
-			);
-			path = 238TavendraStudio;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		30A366F72FF4F8EC00F171B4 /* Frameworks */ = {
@@ -45,8 +101,10 @@
 		30A366F12FF4F8EC00F171B4 = {
 			isa = PBXGroup;
 			children = (
-				30A366FC2FF4F8EC00F171B4 /* 238TavendraStudio */,
+				30A36A6A2FF538BB00F171B4 /* 238TavendraStudio */,
 				30A366FB2FF4F8EC00F171B4 /* Products */,
+				B3336BF437CBE621E8563A49 /* Pods */,
+				335B73BA6F2C3F57E5C972C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +116,202 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		30A36A392FF538BB00F171B4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A332FF538BB00F171B4 /* AchievementBannerView.swift */,
+				30A36A342FF538BB00F171B4 /* AppBackgroundView.swift */,
+				30A36A352FF538BB00F171B4 /* AppDesignSystem.swift */,
+				30A36A362FF538BB00F171B4 /* AppVisualStyle.swift */,
+				30A36A372FF538BB00F171B4 /* CustomCells.swift */,
+				30A36A382FF538BB00F171B4 /* EnergyLevelPicker.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		30A36A3C2FF538BB00F171B4 /* DayPlan */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A3A2FF538BB00F171B4 /* DayPlanView.swift */,
+				30A36A3B2FF538BB00F171B4 /* EveningReviewView.swift */,
+			);
+			path = DayPlan;
+			sourceTree = "<group>";
+		};
+		30A36A3E2FF538BB00F171B4 /* Focus */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A3D2FF538BB00F171B4 /* FocusView.swift */,
+			);
+			path = Focus;
+			sourceTree = "<group>";
+		};
+		30A36A402FF538BB00F171B4 /* Habits */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A3F2FF538BB00F171B4 /* HabitsView.swift */,
+			);
+			path = Habits;
+			sourceTree = "<group>";
+		};
+		30A36A432FF538BB00F171B4 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A412FF538BB00F171B4 /* HomeView.swift */,
+				30A36A422FF538BB00F171B4 /* HomeWidgets.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		30A36A452FF538BB00F171B4 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A442FF538BB00F171B4 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		30A36A472FF538BB00F171B4 /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A462FF538BB00F171B4 /* ProjectsView.swift */,
+			);
+			path = Projects;
+			sourceTree = "<group>";
+		};
+		30A36A492FF538BB00F171B4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A482FF538BB00F171B4 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		30A36A4B2FF538BB00F171B4 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A4A2FF538BB00F171B4 /* StatsView.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		30A36A4D2FF538BB00F171B4 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A4C2FF538BB00F171B4 /* TasksView.swift */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		30A36A4F2FF538BB00F171B4 /* WeeklyReview */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A4E2FF538BB00F171B4 /* WeeklyReviewView.swift */,
+			);
+			path = WeeklyReview;
+			sourceTree = "<group>";
+		};
+		30A36A512FF538BB00F171B4 /* Wellness */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A502FF538BB00F171B4 /* WellnessHubView.swift */,
+			);
+			path = Wellness;
+			sourceTree = "<group>";
+		};
+		30A36A522FF538BB00F171B4 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A3C2FF538BB00F171B4 /* DayPlan */,
+				30A36A3E2FF538BB00F171B4 /* Focus */,
+				30A36A402FF538BB00F171B4 /* Habits */,
+				30A36A432FF538BB00F171B4 /* Home */,
+				30A36A452FF538BB00F171B4 /* Onboarding */,
+				30A36A472FF538BB00F171B4 /* Projects */,
+				30A36A492FF538BB00F171B4 /* Settings */,
+				30A36A4B2FF538BB00F171B4 /* Stats */,
+				30A36A4D2FF538BB00F171B4 /* Tasks */,
+				30A36A4F2FF538BB00F171B4 /* WeeklyReview */,
+				30A36A512FF538BB00F171B4 /* Wellness */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		30A36A552FF538BB00F171B4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A532FF538BB00F171B4 /* AppModels.swift */,
+				30A36A542FF538BB00F171B4 /* PlanningModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		30A36A572FF538BB00F171B4 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A562FF538BB00F171B4 /* MainTabView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		30A36A5A2FF538BB00F171B4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A582FF538BB00F171B4 /* AppDataStore.swift */,
+				30A36A592FF538BB00F171B4 /* AppDataStore+Planning.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		30A36A5E2FF538BB00F171B4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A5B2FF538BB00F171B4 /* AppLinks.swift */,
+				30A36A5C2FF538BB00F171B4 /* FeedbackManager.swift */,
+				30A36A5D2FF538BB00F171B4 /* ShakeEffect.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		30A36A6A2FF538BB00F171B4 /* 238TavendraStudio */ = {
+			isa = PBXGroup;
+			children = (
+				30A36A392FF538BB00F171B4 /* Components */,
+				30A36A522FF538BB00F171B4 /* Features */,
+				30A36A552FF538BB00F171B4 /* Models */,
+				30A36A572FF538BB00F171B4 /* Navigation */,
+				30A36A5A2FF538BB00F171B4 /* Services */,
+				30A36A5E2FF538BB00F171B4 /* Utilities */,
+				30A36A5F2FF538BB00F171B4 /* AppDelegate.swift */,
+				30A36A602FF538BB00F171B4 /* Assets.xcassets */,
+				30A36A612FF538BB00F171B4 /* ContentView.swift */,
+				30A36A622FF538BB00F171B4 /* Info.plist */,
+				30A36A642FF538BB00F171B4 /* LaunchScreen.storyboard */,
+				30A36A662FF538BB00F171B4 /* Main.storyboard */,
+				30A36A672FF538BB00F171B4 /* privacy_policy.md */,
+				30A36A682FF538BB00F171B4 /* SceneDelegate.swift */,
+				30A36A692FF538BB00F171B4 /* ViewController.swift */,
+			);
+			path = 238TavendraStudio;
+			sourceTree = "<group>";
+		};
+		335B73BA6F2C3F57E5C972C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FBD5030D36CE6F44D906CB1 /* Pods_238TavendraStudio.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B3336BF437CBE621E8563A49 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6EF2A3284B6FF3AF37EF7D30 /* Pods-238TavendraStudio.debug.xcconfig */,
+				4B3EE5225A6FA1D3C0D3B9A7 /* Pods-238TavendraStudio.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -65,6 +319,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30A3670D2FF4F8ED00F171B4 /* Build configuration list for PBXNativeTarget "238TavendraStudio" */;
 			buildPhases = (
+				A2A7F7C63CD6BD052CB4ED48 /* [CP] Check Pods Manifest.lock */,
 				30A366F62FF4F8EC00F171B4 /* Sources */,
 				30A366F72FF4F8EC00F171B4 /* Frameworks */,
 				30A366F82FF4F8EC00F171B4 /* Resources */,
@@ -73,12 +328,7 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				30A366FC2FF4F8EC00F171B4 /* 238TavendraStudio */,
-			);
 			name = 238TavendraStudio;
-			packageProductDependencies = (
-			);
 			productName = 238TavendraStudio;
 			productReference = 30A366FA2FF4F8EC00F171B4 /* 238TavendraStudio.app */;
 			productType = "com.apple.product-type.application";
@@ -99,6 +349,7 @@
 				};
 			};
 			buildConfigurationList = 30A366F52FF4F8EC00F171B4 /* Build configuration list for PBXProject "238TavendraStudio" */;
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -106,8 +357,6 @@
 				Base,
 			);
 			mainGroup = 30A366F12FF4F8EC00F171B4;
-			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 30A366FB2FF4F8EC00F171B4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -122,24 +371,104 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30A36A8A2FF538BB00F171B4 /* Assets.xcassets in Resources */,
+				30A36A8C2FF538BB00F171B4 /* LaunchScreen.storyboard in Resources */,
+				30A36A8D2FF538BB00F171B4 /* Main.storyboard in Resources */,
+				30A36A8E2FF538BB00F171B4 /* privacy_policy.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A2A7F7C63CD6BD052CB4ED48 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-238TavendraStudio-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		30A366F62FF4F8EC00F171B4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30A36A6B2FF538BB00F171B4 /* AchievementBannerView.swift in Sources */,
+				30A36A6C2FF538BB00F171B4 /* AppBackgroundView.swift in Sources */,
+				30A36A6D2FF538BB00F171B4 /* AppDesignSystem.swift in Sources */,
+				30A36A6E2FF538BB00F171B4 /* AppVisualStyle.swift in Sources */,
+				30A36A6F2FF538BB00F171B4 /* CustomCells.swift in Sources */,
+				30A36A702FF538BB00F171B4 /* EnergyLevelPicker.swift in Sources */,
+				30A36A712FF538BB00F171B4 /* DayPlanView.swift in Sources */,
+				30A36A722FF538BB00F171B4 /* EveningReviewView.swift in Sources */,
+				30A36A732FF538BB00F171B4 /* FocusView.swift in Sources */,
+				30A36A742FF538BB00F171B4 /* HabitsView.swift in Sources */,
+				30A36A752FF538BB00F171B4 /* HomeView.swift in Sources */,
+				30A36A762FF538BB00F171B4 /* HomeWidgets.swift in Sources */,
+				30A36A772FF538BB00F171B4 /* OnboardingView.swift in Sources */,
+				30A36A782FF538BB00F171B4 /* ProjectsView.swift in Sources */,
+				30A36A792FF538BB00F171B4 /* SettingsView.swift in Sources */,
+				30A36A7A2FF538BB00F171B4 /* StatsView.swift in Sources */,
+				30A36A7B2FF538BB00F171B4 /* TasksView.swift in Sources */,
+				30A36A7C2FF538BB00F171B4 /* WeeklyReviewView.swift in Sources */,
+				30A36A7D2FF538BB00F171B4 /* WellnessHubView.swift in Sources */,
+				30A36A7E2FF538BB00F171B4 /* AppModels.swift in Sources */,
+				30A36A7F2FF538BB00F171B4 /* PlanningModels.swift in Sources */,
+				30A36A802FF538BB00F171B4 /* MainTabView.swift in Sources */,
+				30A36A812FF538BB00F171B4 /* AppDataStore.swift in Sources */,
+				30A36A822FF538BB00F171B4 /* AppDataStore+Planning.swift in Sources */,
+				30A36A832FF538BB00F171B4 /* AppLinks.swift in Sources */,
+				30A36A842FF538BB00F171B4 /* FeedbackManager.swift in Sources */,
+				30A36A852FF538BB00F171B4 /* ShakeEffect.swift in Sources */,
+				30A36A862FF538BB00F171B4 /* AppDelegate.swift in Sources */,
+				30A36A872FF538BB00F171B4 /* ContentView.swift in Sources */,
+				30A36A882FF538BB00F171B4 /* SceneDelegate.swift in Sources */,
+				30A36A892FF538BB00F171B4 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		30A36A642FF538BB00F171B4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30A36A632FF538BB00F171B4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		30A36A662FF538BB00F171B4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30A36A652FF538BB00F171B4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		30A3670E2FF4F8ED00F171B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EF2A3284B6FF3AF37EF7D30 /* Pods-238TavendraStudio.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -147,30 +476,40 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = 238TavendraStudio/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tavendra Studio";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "home.-38TavendraStudio";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tra.t3v3ndr3st9d10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		30A3670F2FF4F8ED00F171B4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B3EE5225A6FA1D3C0D3B9A7 /* Pods-238TavendraStudio.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -178,25 +517,34 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = 238TavendraStudio/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tavendra Studio";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "home.-38TavendraStudio";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tra.t3v3ndr3st9d10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
