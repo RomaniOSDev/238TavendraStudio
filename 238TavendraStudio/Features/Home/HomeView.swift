@@ -7,6 +7,7 @@ final class HomeViewModel: ObservableObject {
     @Published var showEveningReview = false
     @Published var showAddTask = false
     @Published var showAddHabit = false
+    @Published var showDayScore = false
     @Published var energySelection: EnergyLevel = .medium
 }
 
@@ -19,18 +20,8 @@ struct HomeView: View {
         _selectedTab = selectedTab
     }
 
-    private var todayProgress: Double {
-        let planned = store.tasks.filter { $0.dayBlock != nil }
-        guard !planned.isEmpty else {
-            let all = store.tasks
-            guard !all.isEmpty else { return 0 }
-            return Double(all.filter(\.completed).count) / Double(all.count)
-        }
-        return Double(planned.filter(\.completed).count) / Double(planned.count)
-    }
-
-    private var pendingTasks: [TaskItem] {
-        store.tasks.filter { !$0.completed }.sorted { $0.sortOrder < $1.sortOrder }
+    private var recommendation: NowRecommendation {
+        store.nowRecommendation()
     }
 
     private var greeting: String {
@@ -52,26 +43,68 @@ struct HomeView: View {
                 ScrollView {
                     VStack(spacing: 18) {
                         heroBanner
-                        quickActionsRow
-                        HomeProgressWidget(
-                            progress: todayProgress,
-                            openTasks: store.tasks.filter { !$0.completed }.count,
-                            completedToday: store.tasks.filter(\.completed).count,
-                            focusSessions: store.focusSessionsToday,
-                            streak: store.streakDays
+                        EnergyForecastCard()
+                        NowRecommendationCard(
+                            recommendation: recommendation,
+                            onStartFocus: {
+                                let rec = recommendation
+                                let context = rec.task?.workContext ?? rec.preferredContext
+                                store.startFocusWithContext(context, task: rec.task)
+                                selectedTab = .wellness
+                            }
                         )
 
-                        widgetGrid
+                        if !store.tomorrowMustTasks().isEmpty || !store.eveningReviewState.tomorrowMustIds.isEmpty {
+                            TomorrowMustBoardCard(
+                                tasks: store.tomorrowMustTasks(),
+                                onToggle: { store.toggleTaskCompletion($0) },
+                                onRemove: { store.removeFromTomorrowMust($0) }
+                            )
+                        }
+
+                        DayScoreCard(
+                            report: store.todaysDayScore() ?? store.computeDayScore(),
+                            onOpen: { viewModel.showDayScore = true }
+                        )
+
+                        quickActionsRow
+
+                        HomeFocusWidget(onStart: {
+                            if store.timerIsRunning {
+                                store.stopFocusTimer()
+                            } else {
+                                let rec = store.nowRecommendation()
+                                store.startFocusWithContext(rec.task?.workContext ?? rec.preferredContext, task: rec.task)
+                                selectedTab = .wellness
+                            }
+                        })
+
+                        HomeHabitsWidget(habits: store.habits) { habit in
+                            store.toggleHabitToday(habit)
+                        }
+
+                        if !store.weekPriorities.isEmpty {
+                            HomePrioritiesWidget(priorities: store.weekPriorities.filter { !$0.isEmpty })
+                        }
 
                         if store.shouldShowEveningReview {
                             ActionBannerCell(
                                 icon: "moon.stars.fill",
-                                title: "Evening Review",
-                                subtitle: "Wrap up your day and plan tomorrow",
+                                title: "Evening Review + Day Score",
+                                subtitle: "Carry unfinished work into Tomorrow Must and lock today's score",
                                 accent: Color("AppAccent")
                             ) {
                                 viewModel.showEveningReview = true
                             }
+                        }
+
+                        ActionBannerCell(
+                            icon: "calendar.badge.clock",
+                            title: "Time Blocking",
+                            subtitle: "Plan Morning / Afternoon / Evening around your energy forecast",
+                            accent: Color("AppPrimary")
+                        ) {
+                            viewModel.showDayPlan = true
                         }
 
                         Spacer(minLength: 24)
@@ -80,7 +113,7 @@ struct HomeView: View {
                 }
                 .appScrollChrome()
             }
-            .navigationTitle("Home")
+            .navigationTitle("Day OS")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -116,6 +149,9 @@ struct HomeView: View {
             .sheet(isPresented: $viewModel.showEveningReview) {
                 EveningReviewView().environmentObject(store)
             }
+            .sheet(isPresented: $viewModel.showDayScore) {
+                DayScoreView().environmentObject(store)
+            }
             .sheet(isPresented: $viewModel.showAddTask) {
                 TaskFormView(task: nil).environmentObject(store)
             }
@@ -123,7 +159,8 @@ struct HomeView: View {
                 HabitFormView(habit: nil).environmentObject(store)
             }
             .onAppear {
-                viewModel.energySelection = store.currentEnergyLevel
+                store.ensureTodayForecast()
+                viewModel.energySelection = store.energyForecast.level(for: store.currentDayBlock())
             }
         }
         .appScreenChrome()
@@ -134,12 +171,12 @@ struct HomeView: View {
             Image("home_hero")
                 .resizable()
                 .scaledToFill()
-                .frame(height: 180)
+                .frame(height: 160)
                 .frame(maxWidth: .infinity)
                 .clipped()
 
             LinearGradient(
-                colors: [.clear, Color("AppBackground").opacity(0.85)],
+                colors: [.clear, Color("AppBackground").opacity(0.9)],
                 startPoint: .top,
                 endPoint: .bottom
             )
@@ -151,19 +188,9 @@ struct HomeView: View {
                 Text(dateText)
                     .font(.subheadline)
                     .foregroundStyle(Color("AppTextSecondary"))
-                if let next = store.suggestedNextTask() {
-                    HStack(spacing: 6) {
-                        Image(systemName: "sparkles")
-                            .font(.caption)
-                            .foregroundStyle(Color("AppAccent"))
-                        Text("Next: \(next.title)")
-                            .font(.caption.weight(.semibold))
-                            .foregroundStyle(Color("AppTextPrimary"))
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.7)
-                    }
-                    .padding(.top, 4)
-                }
+                Text("Energy × Blocks × Context")
+                    .font(.caption.weight(.bold))
+                    .foregroundStyle(Color("AppAccent"))
             }
             .padding(AppLayout.padding)
         }
@@ -193,56 +220,13 @@ struct HomeView: View {
         }
     }
 
-    private var widgetGrid: some View {
-        VStack(spacing: 14) {
-            HomeFocusWidget(onStart: {
-                if store.timerIsRunning {
-                    store.stopFocusTimer()
-                } else {
-                    store.startFocusWithContext(store.activeFocusContext, task: store.suggestedNextTask())
-                    selectedTab = .wellness
-                }
-            })
-
-            HStack(alignment: .top, spacing: 14) {
-                HomeTasksWidget(
-                    tasks: pendingTasks,
-                    onTaskTap: { task in
-                        store.toggleTaskCompletion(task)
-                    },
-                    onSeeAll: { selectedTab = .tasks }
-                )
-            }
-
-            HomeHabitsWidget(habits: store.habits) { habit in
-                store.toggleHabitToday(habit)
-            }
-
-            HomeEnergyWidget(selection: $viewModel.energySelection) { level in
-                store.setEnergyLevel(level)
-            }
-
-            if !store.weekPriorities.isEmpty {
-                HomePrioritiesWidget(priorities: store.weekPriorities.filter { !$0.isEmpty })
-            }
-
-            ActionBannerCell(
-                icon: "calendar.badge.clock",
-                title: "Time Blocking",
-                subtitle: "Open your full day plan with morning, afternoon and evening blocks",
-                accent: Color("AppPrimary")
-            ) {
-                viewModel.showDayPlan = true
-            }
-        }
-    }
-
     private func handleQuickAction(_ action: HomeQuickAction) {
         switch action {
         case .addTask:
             viewModel.showAddTask = true
         case .startFocus:
-            store.startFocusWithContext(store.activeFocusContext, task: store.suggestedNextTask())
+            let rec = store.nowRecommendation()
+            store.startFocusWithContext(rec.task?.workContext ?? rec.preferredContext, task: rec.task)
             selectedTab = .wellness
         case .addHabit:
             viewModel.showAddHabit = true
@@ -251,9 +235,5 @@ struct HomeView: View {
         case .eveningReview:
             viewModel.showEveningReview = true
         }
-    }
-
-    private func formatTime(_ seconds: Int) -> String {
-        String(format: "%02d:%02d", seconds / 60, seconds % 60)
     }
 }

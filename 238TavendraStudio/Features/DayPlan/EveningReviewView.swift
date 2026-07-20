@@ -3,6 +3,8 @@ import SwiftUI
 struct EveningReviewView: View {
     @EnvironmentObject private var store: AppDataStore
     @Environment(\.dismiss) private var dismiss
+    @State private var showDayScore = false
+    @State private var finishedScore: DayScoreReport?
 
     private var completed: [TaskItem] { store.tasks.filter(\.completed) }
     private var incomplete: [TaskItem] { store.incompleteTasksToday() }
@@ -14,12 +16,23 @@ struct EveningReviewView: View {
                 ScrollView {
                     VStack(spacing: 18) {
                         summaryCard
+                        DayScoreCard(report: store.computeDayScore()) {
+                            showDayScore = true
+                        }
                         if !completed.isEmpty { completedSection }
                         if !incomplete.isEmpty { incompleteSection }
+                        if !store.tomorrowMustTasks().isEmpty {
+                            TomorrowMustBoardCard(
+                                tasks: store.tomorrowMustTasks(),
+                                onToggle: { store.toggleTaskCompletion($0) },
+                                onRemove: { store.removeFromTomorrowMust($0) }
+                            )
+                        }
                         habitsSection
-                        AppPrimaryButton(title: "Finish Review", icon: "checkmark.circle.fill") {
+                        AppPrimaryButton(title: "Finish & Save Day Score", icon: "checkmark.circle.fill") {
+                            finishedScore = store.saveDayScoreIfNeeded()
                             store.completeEveningReview()
-                            dismiss()
+                            showDayScore = true
                         }
                     }
                     .padding(AppLayout.padding)
@@ -34,6 +47,11 @@ struct EveningReviewView: View {
                         .foregroundStyle(Color("AppPrimary"))
                 }
             }
+            .sheet(isPresented: $showDayScore, onDismiss: {
+                if finishedScore != nil { dismiss() }
+            }) {
+                DayScoreView().environmentObject(store)
+            }
         }
         .appScreenChrome()
     }
@@ -41,7 +59,7 @@ struct EveningReviewView: View {
     private var summaryCard: some View {
         AppCard(accent: Color("AppAccent")) {
             VStack(alignment: .leading, spacing: 14) {
-                AppSectionHeader(title: "Day Summary", subtitle: "How did today go?", icon: "moon.stars.fill")
+                AppSectionHeader(title: "Day Summary", subtitle: "Commit unfinished work to Tomorrow Must", icon: "moon.stars.fill")
                 HStack(spacing: 10) {
                     summaryPill("\(completed.count)", label: "Done", icon: "checkmark")
                     summaryPill("\(incomplete.count)", label: "Open", icon: "clock")
@@ -59,7 +77,7 @@ struct EveningReviewView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 10)
-        .background(RoundedRectangle(cornerRadius: 12).fill(Color("AppBackground").opacity(0.4)))
+        .appInsetCell(radius: 12)
     }
 
     private var completedSection: some View {
@@ -81,7 +99,11 @@ struct EveningReviewView: View {
     private var incompleteSection: some View {
         AppCard {
             VStack(alignment: .leading, spacing: 10) {
-                AppSectionHeader(title: "Still Open", icon: "clock.fill")
+                AppSectionHeader(
+                    title: "Still Open",
+                    subtitle: "Add to Tomorrow Must — not just carry over",
+                    icon: "flag.fill"
+                )
                 ForEach(incomplete) { task in
                     HStack(spacing: 12) {
                         VStack(alignment: .leading, spacing: 4) {
@@ -94,14 +116,21 @@ struct EveningReviewView: View {
                             }
                         }
                         Spacer()
-                        Button("Carry Over") { store.carryTaskToTomorrow(task.id) }
-                            .font(.caption.weight(.bold))
-                            .foregroundStyle(Color("AppTextPrimary"))
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 8)
-                            .background(Color("AppPrimary"))
-                            .clipShape(Capsule())
-                            .frame(minHeight: 44)
+                        let already = store.eveningReviewState.tomorrowMustIds.contains(task.id)
+                        Button(already ? "In Board" : "Tomorrow Must") {
+                            if already {
+                                store.removeFromTomorrowMust(task.id)
+                            } else {
+                                store.addToTomorrowMust(task.id)
+                            }
+                        }
+                        .font(.caption.weight(.bold))
+                        .foregroundStyle(Color("AppTextPrimary"))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(already ? Color("AppAccent") : Color("AppPrimary"))
+                        .clipShape(Capsule())
+                        .frame(minHeight: 44)
                     }
                     .padding(.vertical, 6)
                 }

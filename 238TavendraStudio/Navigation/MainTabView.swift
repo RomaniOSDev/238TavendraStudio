@@ -12,7 +12,7 @@ enum AppTab: Int, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .today: return "Home"
+        case .today: return "Day OS"
         case .tasks: return "Tasks"
         case .wellness: return "Focus"
         case .review: return "Review"

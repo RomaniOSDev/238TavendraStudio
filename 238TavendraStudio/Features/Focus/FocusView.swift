@@ -116,6 +116,7 @@ struct FocusView: View {
                         }
                     }
                 }
+                ContextConflictBanner(conflicts: store.contextConflicts(for: store.activeFocusContext))
             }
         }
     }

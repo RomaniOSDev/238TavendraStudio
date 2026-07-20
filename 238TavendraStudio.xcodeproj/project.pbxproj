@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22A7E6300C024222AFA2ABF1 /* DayScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C03BA641F84D578E835D55 /* DayScoreView.swift */; };
 		30A36A6B2FF538BB00F171B4 /* AchievementBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A332FF538BB00F171B4 /* AchievementBannerView.swift */; };
 		30A36A6C2FF538BB00F171B4 /* AppBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A342FF538BB00F171B4 /* AppBackgroundView.swift */; };
 		30A36A6D2FF538BB00F171B4 /* AppDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A36A352FF538BB00F171B4 /* AppDesignSystem.swift */; };
@@ -42,6 +43,7 @@
 		30A36A8C2FF538BB00F171B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30A36A642FF538BB00F171B4 /* LaunchScreen.storyboard */; };
 		30A36A8D2FF538BB00F171B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30A36A662FF538BB00F171B4 /* Main.storyboard */; };
 		30A36A8E2FF538BB00F171B4 /* privacy_policy.md in Resources */ = {isa = PBXBuildFile; fileRef = 30A36A672FF538BB00F171B4 /* privacy_policy.md */; };
+		7074AEB608154CCE9FEA1F8E /* DayLoopWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5619CF54EBE4E1FBBDAEF30 /* DayLoopWidgets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,8 @@
 		3FBD5030D36CE6F44D906CB1 /* Pods_238TavendraStudio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_238TavendraStudio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3EE5225A6FA1D3C0D3B9A7 /* Pods-238TavendraStudio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-238TavendraStudio.release.xcconfig"; path = "Target Support Files/Pods-238TavendraStudio/Pods-238TavendraStudio.release.xcconfig"; sourceTree = "<group>"; };
 		6EF2A3284B6FF3AF37EF7D30 /* Pods-238TavendraStudio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-238TavendraStudio.debug.xcconfig"; path = "Target Support Files/Pods-238TavendraStudio/Pods-238TavendraStudio.debug.xcconfig"; sourceTree = "<group>"; };
+		92C03BA641F84D578E835D55 /* DayScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayScoreView.swift; sourceTree = "<group>"; };
+		A5619CF54EBE4E1FBBDAEF30 /* DayLoopWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayLoopWidgets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,7 @@
 			children = (
 				30A36A3A2FF538BB00F171B4 /* DayPlanView.swift */,
 				30A36A3B2FF538BB00F171B4 /* EveningReviewView.swift */,
+				92C03BA641F84D578E835D55 /* DayScoreView.swift */,
 			);
 			path = DayPlan;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 			children = (
 				30A36A412FF538BB00F171B4 /* HomeView.swift */,
 				30A36A422FF538BB00F171B4 /* HomeWidgets.swift */,
+				A5619CF54EBE4E1FBBDAEF30 /* DayLoopWidgets.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -434,6 +440,8 @@
 				30A36A802FF538BB00F171B4 /* MainTabView.swift in Sources */,
 				30A36A812FF538BB00F171B4 /* AppDataStore.swift in Sources */,
 				30A36A822FF538BB00F171B4 /* AppDataStore+Planning.swift in Sources */,
+				7074AEB608154CCE9FEA1F8E /* DayLoopWidgets.swift in Sources */,
+				22A7E6300C024222AFA2ABF1 /* DayScoreView.swift in Sources */,
 				30A36A832FF538BB00F171B4 /* AppLinks.swift in Sources */,
 				30A36A842FF538BB00F171B4 /* FeedbackManager.swift in Sources */,
 				30A36A852FF538BB00F171B4 /* ShakeEffect.swift in Sources */,
@@ -490,7 +498,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tra.t3v3ndr3st9d10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -531,7 +539,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tra.t3v3ndr3st9d10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;

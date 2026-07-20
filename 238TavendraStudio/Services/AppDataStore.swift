@@ -49,6 +49,8 @@ final class AppDataStore: ObservableObject {
         static let activeDayBlock = "activeDayBlock"
         static let activeLinkedTaskId = "activeLinkedTaskId"
         static let weekPriorities = "weekPriorities"
+        static let energyForecast = "energyForecast"
+        static let dayScoreReports = "dayScoreReports"
     }
 
     @Published var hasSeenOnboarding: Bool {
@@ -199,6 +201,14 @@ final class AppDataStore: ObservableObject {
         didSet { save(weekPriorities, forKey: Keys.weekPriorities) }
     }
 
+    @Published var energyForecast: DayEnergyForecast = DayEnergyForecast() {
+        didSet { save(energyForecast, forKey: Keys.energyForecast) }
+    }
+
+    @Published var dayScoreReports: [DayScoreReport] = [] {
+        didSet { save(dayScoreReports, forKey: Keys.dayScoreReports) }
+    }
+
     @Published var timerRemainingSec: Int = 1500
 
     @Published var currentAchievementBanner: AchievementBannerItem?
@@ -255,6 +265,9 @@ final class AppDataStore: ObservableObject {
             activeLinkedTaskId = nil
         }
         weekPriorities = Self.load([String].self, from: defaults, key: Keys.weekPriorities, decoder: decoder) ?? []
+        energyForecast = Self.load(DayEnergyForecast.self, from: defaults, key: Keys.energyForecast, decoder: decoder) ?? DayEnergyForecast()
+        dayScoreReports = Self.load([DayScoreReport].self, from: defaults, key: Keys.dayScoreReports, decoder: decoder) ?? []
+        ensureTodayForecast()
 
         registerForDataReset()
     }
@@ -589,6 +602,8 @@ final class AppDataStore: ObservableObject {
         activeDayBlock = nil
         activeLinkedTaskId = nil
         weekPriorities = []
+        energyForecast = DayEnergyForecast()
+        dayScoreReports = []
     }
 
     func evaluateAchievements() {

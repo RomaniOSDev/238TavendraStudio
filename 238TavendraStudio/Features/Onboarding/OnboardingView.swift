@@ -12,28 +12,28 @@ private struct OnboardingPage: Identifiable {
     static let all: [OnboardingPage] = [
         OnboardingPage(
             id: 0,
-            icon: "calendar.badge.clock",
-            headline: "Plan Your Day",
-            description: "Structure your morning, afternoon and evening with time blocking and energy-aware scheduling.",
-            highlights: ["Time Blocking", "Energy Levels", "Evening Review"],
-            imageName: "home_hero",
+            icon: "bolt.horizontal.fill",
+            headline: "Energy Forecast",
+            description: "Set High / Medium / Low energy for Morning, Afternoon and Evening — then the app recommends what to do now.",
+            highlights: ["Per-block energy", "Do This Now", "Context Rules"],
+            imageName: "onboarding_energy",
             accent: Color("AppPrimary")
         ),
         OnboardingPage(
             id: 1,
-            icon: "timer",
-            headline: "Stay in Focus",
-            description: "Run contextual focus sessions for deep work, admin tasks, creative flow and breaks.",
-            highlights: ["Deep Work", "Focus Timer", "Work Contexts"],
+            icon: "scope",
+            headline: "Context-Aware Focus",
+            description: "Deep Work belongs in Morning with High energy. Conflicts surface when context, block and energy disagree.",
+            highlights: ["Deep Work rules", "Focus durations", "Smart conflicts"],
             imageName: "widget_focus",
             accent: Color("AppAccent")
         ),
         OnboardingPage(
             id: 2,
-            icon: "flame.fill",
-            headline: "Build Habits",
-            description: "Track streaks, complete daily habits and review your weekly progress in one place.",
-            highlights: ["Daily Streaks", "Habit Blocks", "Weekly Review"],
+            icon: "flag.fill",
+            headline: "Day Score & Tomorrow Must",
+            description: "Evening Review commits unfinished work to Tomorrow Must and locks a Day Score from blocks, energy match and focus minutes.",
+            highlights: ["Day Score", "Tomorrow Must", "Weekly Priorities"],
             imageName: "widget_habits",
             accent: Color("AppPrimary")
         )
