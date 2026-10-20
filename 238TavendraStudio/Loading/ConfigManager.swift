@@ -152,7 +152,7 @@ final class ConfigManager {
         let expires = payload.expires?.int64Value
         let url = payload.url?.trimmingCharacters(in: .whitespacesAndNewlines)
         let hasValidURL = url.flatMap { URL(string: $0) } != nil
-        let ok = payload.ok && hasValidURL && expires != nil
+        let ok = payload.ok && hasValidURL
         return .success(
             ConfigResponse(
                 ok: ok,
