@@ -5,8 +5,8 @@ workflows:
         groups:
           - app_store_credentials
         vars:
-          XCODE_WORKSPACE: "238TavendraStudio.xcodeproj.xcworkspace"
-          XCODE_SCHEME: "238TavendraStudio.xcodeproj"
+          XCODE_WORKSPACE: "238TavendraStudio.xcworkspace"
+          XCODE_SCHEME: "238TavendraStudio"
           BUNDLE_ID: "com.tra.t3v3ndr3st9d10"
           APP_STORE_APP_ID: 6756367614
         xcode: latest
