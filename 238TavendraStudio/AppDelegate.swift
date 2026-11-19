@@ -1,157 +1,47 @@
 import UIKit
-import AppsFlyerLib
-import FirebaseCore
-import FirebaseMessaging
-import UserNotifications
+import SwiftUI
+import AppTrackingTransparency
+import AdjustSdk
+import OneSignalFramework
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
-
-    private static var didStartAppsFlyer = false
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        configureAppsFlyer()
-        configurePushNotifications(application)
-        capturePushURLFromLaunchOptions(launchOptions)
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    static var orientationLock: UIInterfaceOrientationMask = .all
+    static let crimsonLatticeBloomfield = "crimsonLatticeBloomfield"
+    private var tarnishedEmberChoirs = false
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        AppDelegate.orientationLock
+    }
+    
+    func application(_ application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        UserDefaults.standard.set(
+            ATTrackingManager.trackingAuthorizationStatus != .notDetermined,
+            forKey: Self.crimsonLatticeBloomfield)
+        
+        if let config = ADJConfig(appToken: "84nu0bfbwrk0", environment: ADJEnvironmentProduction) {
+            config.logLevel = .verbose
+            config.attConsentWaitingInterval = 20
+            Adjust.initSdk(config)
+        }
+        
+        OneSignal.initialize("01ef71b7-49d1-4490-a2f0-5b6ab0f5f917", withLaunchOptions: launchOptions)
         return true
     }
-
-    private func configureAppsFlyer() {
-        AppsFlyerLib.shared().appsFlyerDevKey = "cqTiFvvyhL5a2SNAqqAna3"
-        AppsFlyerLib.shared().appleAppID = "6784795281"
-        AppsFlyerLib.shared().delegate = self
-        AppsFlyerLib.shared().deepLinkDelegate = self
-
-        if Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") != nil {
-            FirebaseApp.configure()
-            Messaging.messaging().delegate = self
-            if let app = FirebaseApp.app() {
-                ConfigManagerOptionalData.firebaseProjectId = app.options.gcmSenderID
-            }
+    
+    func saggingFogVigil() {
+        guard !tarnishedEmberChoirs, ATTrackingManager.trackingAuthorizationStatus == .notDetermined else { return }
+        tarnishedEmberChoirs = true
+        
+        Task {
+            defer { tarnishedEmberChoirs = false }
+            try? await Task.sleep(for: .seconds(1))
+            guard UIApplication.shared.applicationState == .active else { return }
+            _ = await Adjust.requestAppTrackingAuthorization()
+            let shimmeringAnvilTides = ATTrackingManager.trackingAuthorizationStatus != .notDetermined
+            UserDefaults.standard.set(shimmeringAnvilTides, forKey: AppDelegate.crimsonLatticeBloomfield)
         }
-    }
-
-    static func startAppsFlyerIfNeeded() {
-        let start: () -> Void = {
-            guard !didStartAppsFlyer else { return }
-            didStartAppsFlyer = true
-            AppsFlyerLib.shared().start()
-        }
-        if Thread.isMainThread {
-            start()
-        } else {
-            DispatchQueue.main.sync(execute: start)
-        }
-    }
-
-    private func configurePushNotifications(_ application: UIApplication) {
-        UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            switch settings.authorizationStatus {
-            case .authorized, .provisional, .ephemeral:
-                DispatchQueue.main.async {
-                    application.registerForRemoteNotifications()
-                }
-            case .notDetermined, .denied:
-                break
-            @unknown default:
-                break
-            }
-        }
-    }
-
-    private func capturePushURLFromLaunchOptions(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        guard let userInfo = launchOptions?[.remoteNotification] as? [AnyHashable: Any] else { return }
-        NotificationInteractionCallback.shared.handleNotificationOpen(userInfo: userInfo)
-        if let url = PushNotificationURLRouter.shared.extractURL(from: userInfo) {
-            PushNotificationURLRouter.shared.setPendingURL(url)
-        }
-    }
-
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        guard FirebaseApp.app() != nil else { return }
-        Messaging.messaging().apnsToken = deviceToken
-    }
-
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-    }
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {}
-
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        AppsFlyerLib.shared().continue(userActivity, restorationHandler: nil)
-        return true
-    }
-
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        AppsFlyerLib.shared().handleOpen(url, options: options)
-        return true
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .sound, .badge])
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        NotificationInteractionCallback.shared.handleNotificationOpen(userInfo: userInfo)
-        if let url = PushNotificationURLRouter.shared.extractURL(from: userInfo) {
-            DispatchQueue.main.async { [weak self] in
-                self?.openPushURLInWebView(url)
-            }
-        }
-        completionHandler()
-    }
-
-    private func openPushURLInWebView(_ url: URL) {
-        guard let scene = UIApplication.shared.connectedScenes
-            .first(where: { $0.activationState == .foregroundActive || $0.activationState == .foregroundInactive }) as? UIWindowScene,
-              let window = scene.windows.first(where: { $0.isKeyWindow }) ?? scene.windows.first else {
-            PushNotificationURLRouter.shared.setPendingURL(url)
-            return
-        }
-        window.rootViewController = WebviewVC(url: url)
-    }
-}
-
-extension AppDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        ConfigManagerOptionalData.pushToken = fcmToken
-        if let app = FirebaseApp.app() {
-            ConfigManagerOptionalData.firebaseProjectId = app.options.gcmSenderID
-        }
-        if NotificationPermissionManager.shared.consumeShouldSendTokenOnce() {
-            ConfigManager.shared.requestConfig { _ in }
-        }
-    }
-}
-
-extension AppDelegate: AppsFlyerLibDelegate {
-    func onConversionDataSuccess(_ installData: [AnyHashable: Any]) {
-        AppsFlyerManager.shared.handleConversionDataSuccess(installData)
-    }
-
-    func onConversionDataFail(_ error: Error!) {
-        AppsFlyerManager.shared.handleConversionDataFail(error)
-    }
-}
-
-extension AppDelegate: DeepLinkDelegate {
-    func didResolveDeepLink(_ result: DeepLinkResult) {
-        guard result.status == .found, let deepLink = result.deepLink else { return }
-        var payload: [AnyHashable: Any] = [:]
-        for (key, value) in deepLink.clickEvent {
-            payload[key] = value
-        }
-        payload["is_deferred"] = deepLink.isDeferred
-        AppsFlyerManager.shared.handleDeepLinkData(payload)
     }
 }

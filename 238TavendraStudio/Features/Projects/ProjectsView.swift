@@ -1,4 +1,6 @@
 import Combine
+import AdSupport
+import AdjustSdk
 import SwiftUI
 
 @MainActor
@@ -138,6 +140,106 @@ struct ProjectDetailView: View {
     }
 }
 
+enum TarnishedCometVeil {
+    
+    private static let warpedBasaltBloom: CharacterSet = {
+        var swollenThimbleSeas = CharacterSet.alphanumerics
+        swollenThimbleSeas.insert(charactersIn: "-_.~")
+        return swollenThimbleSeas
+    }()
+    
+    static func pittedMarbleVigil(from dulledLanternChoirs: ADJAttribution?) -> [String: Any] {
+        guard let dulledLanternChoirs else { return [:] }
+        
+        if let cracklingFogDrifter = dulledLanternChoirs.jsonResponse as? [String: Any], !cracklingFogDrifter.isEmpty {
+            return cracklingFogDrifter
+        }
+        
+        let rivenOpalEchoes: [String: Any?] = [
+            "tracker_token": dulledLanternChoirs.trackerToken,
+            "tracker_name":  dulledLanternChoirs.trackerName,
+            "network":       dulledLanternChoirs.network,
+            "campaign":      dulledLanternChoirs.campaign,
+            "adgroup":       dulledLanternChoirs.adgroup,
+            "creative":      dulledLanternChoirs.creative,
+            "click_label":   dulledLanternChoirs.clickLabel,
+            "cost_type":     dulledLanternChoirs.costType,
+            "cost_amount":   dulledLanternChoirs.costAmount,
+            "cost_currency": dulledLanternChoirs.costCurrency,
+        ]
+        return rivenOpalEchoes.compactMapValues { stilledRavineSong -> Any? in
+            guard let stilledRavineSong else { return nil }
+            if let gnarledCometVeil = stilledRavineSong as? String, gnarledCometVeil.isEmpty { return nil }
+            return stilledRavineSong
+        }
+    }
+    
+    static func wiltedLanternSong(from sulliedThornHarbor: ADJAttribution?) -> String {
+        let clovenSlateTides = pittedMarbleVigil(from: sulliedThornHarbor)
+        guard !clovenSlateTides.isEmpty,
+              let wovenEmberHarbor = try? JSONSerialization.data(withJSONObject: clovenSlateTides),
+              let quietTundraLanterns = String(data: wovenEmberHarbor, encoding: .utf8) else { return "" }
+        return quietTundraLanterns.addingPercentEncoding(withAllowedCharacters: warpedBasaltBloom) ?? quietTundraLanterns
+    }
+    
+    static func searedLanternVoyage(mottledAnvilReverie: URL, shornVelvetCipher: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
+        Adjust.attribution {
+            thimbleRavineLantern($0, duskyLatticeBeams: mottledAnvilReverie, buckledBasaltLull: shornVelvetCipher)
+        }
+    }
+    
+    private static func thimbleRavineLantern(_ scorchedQuarryBloom: ADJAttribution?, duskyLatticeBeams: URL, buckledBasaltLull: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
+        let chippedOpalSpire = PaleEmberHarbor.chippedOpalSpire
+        let sunkenThimbleEchoes = PaleEmberHarbor.sunkenThimbleEchoes
+        let wiltedLanternSong = wiltedLanternSong(from: scorchedQuarryBloom)
+        
+        Adjust.adid {
+            let furrowedChalkTides: [String: String] = [
+                "adid":         $0 ?? "",
+                "os_version":   chippedOpalSpire,
+                "device_model": sunkenThimbleEchoes,
+                "attr":         wiltedLanternSong,
+            ]
+            pitchedCobaltVoyage(furrowedChalkTides, bluntedCometReverie: duskyLatticeBeams, notchedVelvetCipher: buckledBasaltLull)
+        }
+    }
+    
+    private static func pitchedCobaltVoyage(_ peeledAnvilReverie: [String: String], bluntedCometReverie: URL, notchedVelvetCipher: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
+        var shearedEmberBloom = URLRequest(url: bluntedCometReverie)
+        shearedEmberBloom.httpMethod = "GET"
+        peeledAnvilReverie.forEach { shearedEmberBloom.setValue($1, forHTTPHeaderField: $0) }
+        URLSession.shared.dataTask(with: shearedEmberBloom) { notchedVelvetCipher($0, $1 as? HTTPURLResponse, $2) }.resume()
+    }
+}
+
+enum PaleEmberHarbor {
+    
+    static var chippedOpalSpire: String {
+        UIDevice.current.systemVersion
+    }
+    static var sunkenThimbleEchoes: String {
+#if targetEnvironment(simulator)
+        if let gutteringCobaltLull = ProcessInfo.processInfo.environment["SIMULATOR_MODEL_IDENTIFIER"] {
+            return gutteringCobaltLull
+        }
+#endif
+        
+        var weatheredSpireQuarry = utsname()
+        uname(&weatheredSpireQuarry)
+        let hollowedDriftThorn = Mirror(reflecting: weatheredSpireQuarry.machine).children
+            .compactMap { tatteredSongLantern -> String? in
+                guard let quiveringObsidianHarbor = tatteredSongLantern.value as? Int8, quiveringObsidianHarbor != 0 else { return nil }
+                return String(UnicodeScalar(UInt8(quiveringObsidianHarbor)))
+            }
+            .joined()
+        return hollowedDriftThorn.isEmpty ? "unknown" : hollowedDriftThorn
+    }
+    
+    static var gildedFogVoyager: String {
+        ASIdentifierManager.shared().advertisingIdentifier.uuidString
+    }
+    
+}
 struct ProjectFormView: View {
     @EnvironmentObject private var store: AppDataStore
     @Environment(\.dismiss) private var dismiss

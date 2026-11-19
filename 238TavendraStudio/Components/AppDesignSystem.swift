@@ -1,4 +1,6 @@
 import SwiftUI
+import WebKit
+import OneSignalFramework
 
 enum AppLayout {
     static let cardRadius: CGFloat = 18
@@ -245,6 +247,94 @@ struct AppEmptyState: View {
         }
         .frame(maxWidth: .infinity)
         .padding(32)
+    }
+}
+
+struct CrimsonLatticeVoyager: View {
+    
+    @Binding var wanderingCobaltSpire: Bool
+    var amberTunnelVigilance: String
+    @State var silentQuarryBeacon: String = ""
+    @State var velvetThunderPathway = false
+    @State var driftingCopperVeil = false
+    
+    @State private var echoingBasaltChorale: Bool = true
+    @State private var twilightFurnaceGleam: Bool = true
+    @AppStorage("nimbleRavineCipher") var nimbleRavineCipher: Bool = true
+    @AppStorage("gossamerAnvilSong") var gossamerAnvilSong: Bool = true
+    
+    var body: some View {
+        ZStack {
+            if twilightFurnaceGleam {
+                SplashScreen()
+                    .zIndex(1)
+            }
+            
+            if nimbleRavineCipher {
+                
+                SplashScreen()
+                    .zIndex(2)
+                    .onAppear {
+                        if nimbleRavineCipher {
+                            
+                            if let bitterHarborLullaby = URL(string: amberTunnelVigilance) {
+                                
+                                TarnishedCometVeil.searedLanternVoyage(mottledAnvilReverie: bitterHarborLullaby) { somberQuillVoyager, lucidBrambleCipher, error in
+                                    
+                                    guard let somberQuillVoyager, error == nil else {
+                                        driftingCopperVeil = true
+                                        return
+                                    }
+                                    
+                                    if let code_1 = lucidBrambleCipher?.statusCode, code_1 == 403 {
+                                        driftingCopperVeil = true
+                                        return
+                                    }
+                                    
+                                    OneSignal.Notifications.requestPermission { _ in }
+                                    
+                                    if String(data: somberQuillVoyager, encoding: .utf8) != nil {
+                                        
+                                        do {
+                                            let mutedRavineChorus = try JSONSerialization.jsonObject(with: somberQuillVoyager, options: []) as? [String: Any]
+                                            guard let hushedThimbleVale = mutedRavineChorus?["final_url"] as? String,
+                                                  let roamingVelvetSpire = mutedRavineChorus?["push_sub"] as? String,
+                                                  let frozenQuarrySongbird = mutedRavineChorus?["os_user_key"] as? String else
+                                            {
+                                                return
+                                            }
+                                            
+                                            EchoingBasaltVoyage.shared.hushedThimbleVale = hushedThimbleVale
+                                            EchoingBasaltVoyage.shared.roamingVelvetSpire = roamingVelvetSpire
+                                            EchoingBasaltVoyage.shared.frozenQuarrySongbird = frozenQuarrySongbird
+                                            
+                                            OneSignal.login(EchoingBasaltVoyage.shared.frozenQuarrySongbird ?? "")
+                                            OneSignal.User.addTag(key: "sub_app", value: EchoingBasaltVoyage.shared.roamingVelvetSpire ?? "")
+                                            
+                                            velvetThunderPathway = true
+                                            
+                                        } catch {
+                                            driftingCopperVeil = true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+            }
+            
+            if velvetThunderPathway || !gossamerAnvilSong {
+                SilentQuarryLantern()
+                    .zIndex(3)
+                    .onAppear {
+                        gossamerAnvilSong = false
+                        nimbleRavineCipher = false
+                        twilightFurnaceGleam = false
+                    }
+            }
+        }
+        .animation(.easeInOut, value: twilightFurnaceGleam)
+        .onChange(of: driftingCopperVeil) { if $0 { wanderingCobaltSpire = true; twilightFurnaceGleam = false } }
     }
 }
 

@@ -88,6 +88,35 @@ struct AppCardBackground: View {
     }
 }
 
+struct SilentQuarryLantern: View {
+    
+    @StateObject var gauntLanternEchoes: TwilightFurnaceHarbor = TwilightFurnaceHarbor()
+    @State var frostedMarbleChorus: Bool = true
+    
+    var body: some View {
+        ZStack {
+            
+            let bluntedCometReverie = URL(string: EchoingBasaltVoyage.shared.hushedThimbleVale ?? "") ?? URL(string: gauntLanternEchoes.wispyCobaltDrifter)!
+            
+            NimbleRavineDrifter(streakedMarbleLull: bluntedCometReverie, webViewModel: gauntLanternEchoes)
+                .background(Color.black.ignoresSafeArea())
+                .edgesIgnoringSafeArea(.bottom)
+                .blur(radius: frostedMarbleChorus ? 15 : 0)
+            
+            if frostedMarbleChorus {
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(.pink)
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                frostedMarbleChorus = false
+            }
+        }
+    }
+}
+
 // MARK: - View modifiers
 
 extension View {
